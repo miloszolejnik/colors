@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  color: #333333;
+}
+
+body path, body i, body svg {
+  pointer-events: none;
+}
+
+body .colors {
+  min-height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #d4d4d4;
+}
+
+body .colors .color {
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: relative;
+  overflow: hidden;
+}
+
+body .colors .color .controls .adjust, body .colors .color .controls .lock {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 2rem 0rem;
+}
+
+body .colors .color h2 {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+body .colors .color .slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  bottom: 0%;
+  background-color: ghostwhite;
+  opacity: 0;
+  padding: 1rem;
+  width: 80%;
+  pointer-events: none;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  /* Slider Stuff */
+}
+
+body .colors .color .slider input[type="range"] {
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+body .colors .color .slider button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: none;
+  background-color: #494949;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+body .colors .color .slider.active {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  pointer-events: all;
+}
+
+body .colors .color .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .panel {
+  background-color: ghostwhite;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 20vh;
+}
+
+body .panel button {
+  font: 1.2rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  background-color: #1f213f;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+body .panel p {
+  font-size: 1.2rem;
+}
+
+body .panel .library-panel, body .panel .generate-panel, body .panel .save-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .copy-container,
+body .save-container,
+body .library-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+body .copy-container .copy-popup,
+body .copy-container .save-popup,
+body .copy-container .library-popup,
+body .save-container .copy-popup,
+body .save-container .save-popup,
+body .save-container .library-popup,
+body .library-container .copy-popup,
+body .library-container .save-popup,
+body .library-container .library-popup {
+  background: ghostwhite;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 1rem;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transform: translateY(-2rem);
+          transform: translateY(-2rem);
+  min-width: 40%;
+  min-height: 30vh;
+}
+
+body .copy-container .copy-popup h4,
+body .copy-container .save-popup h4,
+body .copy-container .library-popup h4,
+body .save-container .copy-popup h4,
+body .save-container .save-popup h4,
+body .save-container .library-popup h4,
+body .library-container .copy-popup h4,
+body .library-container .save-popup h4,
+body .library-container .library-popup h4 {
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+body .copy-container .save-popup .save-name,
+body .save-container .save-popup .save-name,
+body .library-container .save-popup .save-name {
+  font-size: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+body .copy-container .save-popup .close-save,
+body .save-container .save-popup .close-save,
+body .library-container .save-popup .close-save {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: none;
+  background-color: #494949;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+body .copy-container .submit-save,
+body .save-container .submit-save,
+body .library-container .submit-save {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: #1f213f;
+  border: none;
+  color: ghostwhite;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+body .copy-container .library-popup,
+body .save-container .library-popup,
+body .library-container .library-popup {
+  min-width: 40%;
+  padding: 1rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-y: scroll;
+  max-height: 50vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body .copy-container .library-popup .close-library,
+body .save-container .library-popup .close-library,
+body .library-container .library-popup .close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: none;
+  background-color: #494949;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+body .copy-container .library-popup .custom-palette,
+body .save-container .library-popup .custom-palette,
+body .library-container .library-popup .custom-palette {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+}
+
+body .copy-container .library-popup .custom-palette .small-preview,
+body .save-container .library-popup .custom-palette .small-preview,
+body .library-container .library-popup .custom-palette .small-preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body .copy-container .library-popup .custom-palette .small-preview div,
+body .save-container .library-popup .custom-palette .small-preview div,
+body .library-container .library-popup .custom-palette .small-preview div {
+  height: 5rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body .copy-container .library-popup .custom-palette .pick-palette-button,
+body .save-container .library-popup .custom-palette .pick-palette-button,
+body .library-container .library-popup .custom-palette .pick-palette-button {
+  height: 5rem;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: #1f213f;
+  color: ghostwhite;
+  margin-left: 1rem;
+}
+
+body .copy-container .library-popup::-webkit-scrollbar,
+body .save-container .library-popup::-webkit-scrollbar,
+body .library-container .library-popup::-webkit-scrollbar {
+  display: none;
+}
+
+body .copy-container.active,
+body .save-container.active,
+body .library-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+body .copy-container.active .copy-popup.active,
+body .copy-container.active .save-popup.active,
+body .copy-container.active .library-popup.active,
+body .save-container.active .copy-popup.active,
+body .save-container.active .save-popup.active,
+body .save-container.active .library-popup.active,
+body .library-container.active .copy-popup.active,
+body .library-container.active .save-popup.active,
+body .library-container.active .library-popup.active {
+  -webkit-transform: translateY(0rem);
+          transform: translateY(0rem);
+}
+/*# sourceMappingURL=main.css.map */
